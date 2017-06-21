@@ -117,11 +117,7 @@ namespace Massive
         {
             get
             {
-                if (ConfigurationManager.ConnectionStrings.Count > 1)
-                {
-                    return new DynamicModel(ConfigurationManager.ConnectionStrings[1].Name);
-                }
-                throw new InvalidOperationException("Need a connection string name - can't determine what it is");
+               return new DynamicModel("elmah");
             }
         }
     }
@@ -146,8 +142,8 @@ namespace Massive
             DescriptorField = descriptorField;
             var _providerName = "System.Data.SqlClient";
 
-            if (ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName != null)
-                _providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
+            //if (ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName != null)
+              //  _providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
 
             _factory = DbProviderFactories.GetFactory(_providerName);
             ConnectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
